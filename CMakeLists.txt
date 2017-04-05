@@ -134,3 +134,7 @@ target_link_libraries(hello_world ${catkin_LIBRARIES})
 add_executable(publisher src/publisher.cpp)
 add_dependencies(publisher ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(publisher ${catkin_LIBRARIES})
+
+add_executable(subscriber src/subscriber.cpp)
+add_dependencies(subscriber ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(subscriber ${catkin_LIBRARIES})
