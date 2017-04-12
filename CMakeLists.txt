@@ -138,3 +138,7 @@ target_link_libraries(publisher ${catkin_LIBRARIES})
 add_executable(subscriber src/subscriber.cpp)
 add_dependencies(subscriber ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(subscriber ${catkin_LIBRARIES})
+
+add_executable(turtle_controller src/turtle_controller.cpp)
+add_dependencies(turtle_controller ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(turtle_controller ${catkin_LIBRARIES})
