@@ -14,8 +14,8 @@ int main(int argc, char** argv)
   while (ros::ok()) {
     geometry_msgs::Twist controls;
 
-    controls.linear.x = 1.0; // [1 m/s]
-    controls.angular.z = 1.0; // [1 rad/s]
+    controls.linear.x =(double)(rand() % 10 +1)/4.0;
+    controls.angular.z =(double)(rand() % 10 - 5)/2.0;
 
     control_pub.publish(controls);
 
