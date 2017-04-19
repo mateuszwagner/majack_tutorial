@@ -1,4 +1,9 @@
 <launch>
+  <param name="goal_x" value="10.0"/>
+  <param name="goal_y" value="10.0"/>
+  <param name="surge_gain" value="1.0"/>
+  <param name="orientation_gain" value="1.0"/>
+
   <node pkg="turtlesim" type="turtlesim_node" name="extra_turtle"/>
   <node pkg="majack_tutorial" type="turtle_controller" name="extra_controller" output="screen"/>
 </launch>
