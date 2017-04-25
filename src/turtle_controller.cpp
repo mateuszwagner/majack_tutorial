@@ -1,7 +1,7 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include "turtlesim/Pose.h"
-
+#include <geometry_msgs/Point.h>
 
 double k_P = 1.0;                 //proportional gain
 
@@ -10,16 +10,23 @@ double k_Pf, k_Po; //gains
 double forward_control = 0.0;
 double orientation_control = 0.0;
 
+double distanceBetweenPoints(double first_point_x, double first_point_y, double second_point_x, double second_point_y) {
+  return sqrt(pow((first_point_x-second_point_x),2)+pow((first_point_y-second_point_y),2));
+}
+
 void pose_callback(const turtlesim::Pose::ConstPtr& pose_msg){
-  double x_error = x_d - pose_msg->x;
-  double y_error = y_d - pose_msg->y;
+  if (distanceBetweenPoints(pose_msg->x, pose_msg->y, x_d, y_d) > 0.1) {
+    double x_error = x_d - pose_msg->x;
+    double y_error = y_d - pose_msg->y;
 
-  //TO:DO
-  //Compute orientation control
-  //Hint: use atan2(y_error, x_error)
+    orientation_control = k_Po * atan2(y_error, x_error) - pose_msg->theta;
+    forward_control = k_Pf * distanceBetweenPoints(pose_msg->x, pose_msg->y, x_d, y_d);
+  } else {
+    orientation_control = 0;
+    forward_control = 0;
+  }
 
-  orientation_control = k_Po * y_error;
-  forward_control = k_Pf * x_error;
+  ROS_INFO_STREAM("x: " << pose_msg->x << "y: " << pose_msg->y << "theta: " << pose_msg->theta);
 }
 
 int main(int argc, char** argv)
@@ -43,7 +50,7 @@ int main(int argc, char** argv)
     geometry_msgs::Twist controls;
 
     controls.linear.x = forward_control;
-    controls.angular.z = 0;
+    controls.angular.z = orientation_control;
 
     control_pub.publish(controls);
 
