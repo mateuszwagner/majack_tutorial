@@ -11,3 +11,5 @@ Important commands:
 * roslaunch [name of package] [name of file] - starts a .launch file
 
 * rosrun turlesim turtlesim_node / rosrun turtlesim turtle_teleop_key 
+
+* catkin_make
