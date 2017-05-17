@@ -23,6 +23,7 @@ void timercallback(const ros::TimerEvent&)
   static int counter = 0;
   counter = counter+1;
   ROS_INFO_STREAM("I did "<<counter<<" pushup !");
+
   if(counter>=10)
   {
     ROS_INFO_STREAM("I am so tired...");
