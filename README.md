@@ -13,3 +13,10 @@ Important commands:
 * rosrun turlesim turtlesim_node / rosrun turtlesim turtle_teleop_key 
 
 * catkin_make
+
+
+http://wiki.ros.org/Sensors/Cameras
+http://wiki.ros.org/ueye
+http://wiki.ros.org/camera_calibration
+http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration
+https://www.uco.es/investiga/grupos/ava/node/26
